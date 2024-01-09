@@ -5,22 +5,28 @@
 // decltype
 // lambda 
 // template variable
-
+#include <string>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
 
 
 int main()
 {
+	using namespace std;
 	//Задание 1. 
 	{
-		enum months { January, February, March/*...*/ };
-		enum weekDays { Monday, Tuesday /*...*/ };
+		enum class months:unsigned char { January, February, March/*...*/ };
+		enum class weekDays :unsigned char{ Monday, Tuesday /*...*/ };
+		using enum months;
 
 		months m = January;
 		//а) уберите проблемы (это значит, что КОМПИЛЯТОР не
 		//должен позволять программисту осуществлять опасные
 		//сравнения!)
 
-		if (m == Monday) { /*...*/ }
+		//if (m == weekDays::Monday) { /*...*/ }
 
 		//б) оптимизируйте использование памяти
 		months year[] = { January, February, March };
@@ -38,8 +44,10 @@ int main()
 		//неизменными
 	{
 
-
-
+		vector<string>vs = { "Aa+1a","B2*bb","Cc3&c" };
+		for (auto &s : vs)
+			for (auto& c : s) 
+				c = toupper(c);
 		__asm nop
 	}
 
@@ -56,8 +64,14 @@ int main()
 		//распечатайте содержимое, например: A: any, apple, away
 	{
 
+		map<char, set<string>> dict = { {'b',{"bBb","bvb","bbb"}},{'A',{"Aaa","Aza","Abc"}} };
 
-
+		for (const auto& [ch, words] : dict)
+		{
+			cout <<endl<< ch << ": ";
+			for (const auto& word : words)
+				cout << word << ", ";
+		};
 		__asm nop
 	}
 
@@ -68,7 +82,8 @@ int main()
 	{
 		//дано (например):
 		const char* s[] = { "yong", "away", "bar", "any", "son", "apple" };
-
+		map<char, set<string>> dict;
+		for (const auto& word : s) dict(word[0], word);
 
 
 		__asm nop
