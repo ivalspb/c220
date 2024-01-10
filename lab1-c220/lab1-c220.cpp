@@ -10,7 +10,9 @@
 #include <vector>
 #include <map>
 #include <set>
-
+#include <list>
+#include <deque>
+#include "func.h"
 
 int main()
 {
@@ -83,9 +85,15 @@ int main()
 		//дано (например):
 		const char* s[] = { "yong", "away", "bar", "any", "son", "apple" };
 		map<char, set<string>> dict;
-		for (const auto& word : s) dict(word[0], word);
+		for (const auto& word : s) 
+			dict[word[0]].insert({word});//init string by const char* and insert it to the set
 
-
+		for (const auto& [ch, words] : dict)
+		{
+			cout << endl << ch << ": ";
+			for (const auto& word : words)
+				cout << word << ", ";
+		};
 		__asm nop
 	}
 
@@ -94,17 +102,17 @@ int main()
 		//Задание 4. создать функцию для вывода на печать
 		//элементов последовательностей, заданных ниже:
 	{
-		std::vector<double> vd = { 1.1,2.2,3.3 };
-		//PrintAnyCont(vd);
+		vector<double> vd = { 1.1,2.2,3.3 };
+		PrintAnyCont(vd);
 
-		std::string s("abc");
-		//PrintAnyCont(s);
+		string s("abc");
+		PrintAnyCont(s);
 
 		int ar[] = { 1, 2, 3 };
-		//PrintAnyCont(ar);
+		PrintAnyCont(ar);
 
-		std::initializer_list<int> il{ 3,4,5 };
-		//PrintAnyCont(il);		
+		initializer_list<int> il{ 3,4,5 };
+		PrintAnyCont(il);		
 
 		__asm nop
 	}
@@ -117,14 +125,14 @@ int main()
 		//изменение объектов типа std::string может выглядеть "aBc1" -> "AbC1"
 		//элементов последовательностей, заданных ниже:
 	{
-		std::vector<double> vd{ 1.1,2.2,3.3 };
-		//NegateAll(vd);
+		vector<double> vd{ 1.1,2.2,3.3 };
+		NegateAll(vd);
 
-		std::list<std::string> ls{ "aBc", "Qwerty", "n12" };
-		//NegateAll(ls);
+		list<string> ls{ "aBc", "Qwerty", "n12" };
+		NegateAll(ls);
 
 		int ar[]{ 1, 2, 3 };
-		//NegateAll(ar);
+		NegateAll(ar);
 
 		__asm nop
 
@@ -137,7 +145,7 @@ int main()
 		//Собственно для сортировки можно использовать обобщенный
 		//алгоритм sort(), а для задания условия - лямбда-функцию
 	{
-		std::vector<double> vd = { -3.3,  2.2, -1.1 };
+		vector<double> vd = { -3.3,  2.2, -1.1 };
 		//absSort(vd);
 
 
@@ -167,19 +175,19 @@ int main()
 
 		//например:
 	{
-		std::vector<int> v{ 1,2,3,4 };
-		std::list<double> l{ 1.1, 2.2, 3.3, 4.4, 5.5 };
+		vector<int> v{ 1,2,3,4 };
+		list<double> l{ 1.1, 2.2, 3.3, 4.4, 5.5 };
 
 		//??? = SumCont(v, l);
 
 
-		std::list<int> ll{ 1, 2, 3, 4, 5, 6, 7, 8 };
+		list<int> ll{ 1, 2, 3, 4, 5, 6, 7, 8 };
 		double ar[] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
 		//??? = SumCont(ar, ll);
 
 
-		std::set<std::string> s{ "abc", "qwerty", "my" };
-		std::deque<const char*> d{ "111", "22" };
+		set<std::string> s{ "abc", "qwerty", "my" };
+		deque<const char*> d{ "111", "22" };
 		//??? = SumCont(s, d);
 
 		__asm nop
