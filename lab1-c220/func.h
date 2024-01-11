@@ -47,13 +47,11 @@ inline void absSort(auto &container)
 }
 
 template <typename Container1, typename Container2, 
-	typename T1 = typename Container1::value_type, typename T2 = typename Container2::value_type,
-	typename T=typename common_type<T1,T2>>
-typename vector<T>& SumCont(Container1& container1, Container2& container2)
+	typename T1 = typename Container1::value_type, typename T2 = typename Container2::value_type>
+auto& SumCont(Container1& container1, Container2& container2)
 {
-	size_t res_size = max(size(container1), size(container2));
-	vector<T> v_res(res_size);
+	vector<common_type_t<T1, T2>> v_res(max(size(container1), size(container2)));
 	copy(begin(container2), end(container2), v_res.begin());
-	transform(begin(container1), end(container1), v_res.begin(), [](auto c1, auto r) {return  c1 + r; });
+	transform(begin(container1), end(container1), v_res.begin(), v_res.begin(), [](auto c1, auto r) {return  c1+ r; });
 	return v_res;
 }
