@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include <algorithm>
  
 using namespace std;
 
@@ -40,7 +41,19 @@ void NegateAll(list<string>& t)
 		}
 }
 
-inline void absSort(auto container)
+inline void absSort(auto &container)
 {
-	std::sort(begin(container),end(container), [](auto x) {abs(x); });
+	std::ranges::sort(container, [](auto x, auto y) {return abs(x)<abs(y); });
+}
+
+template <typename Container1, typename Container2, 
+	typename T1 = typename Container1::value_type, typename T2 = typename Container2::value_type,
+	typename T=typename common_type<T1,T2>>
+typename vector<T>& SumCont(Container1& container1, Container2& container2)
+{
+	size_t res_size = max(size(container1), size(container2));
+	vector<T> v_res(res_size);
+	copy(begin(container2), end(container2), v_res.begin());
+	transform(begin(container1), end(container1), v_res.begin(), [](auto c1, auto r) {return  c1 + r; });
+	return v_res;
 }
