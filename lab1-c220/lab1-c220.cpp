@@ -146,11 +146,11 @@ int main()
 		//алгоритм sort(), а для задания условия - лямбда-функцию
 	{
 		vector<double> vd = { -3.3,  2.2, -1.1 };
-		//absSort(vd);
+		absSort(vd);
 
 
 		int ar[] = { -3, 2, -1 };
-		//absSort(ar);
+		absSort(ar);
 
 		__asm nop
 	}
