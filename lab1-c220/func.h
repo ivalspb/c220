@@ -56,3 +56,20 @@ auto SumCont(Container1& container1, Container2& container2)
 	transform(begin(container1), end(container1), v_res.begin(), v_res.begin(), [](auto c1, auto r) {return  c1+ r; });
 	return v_res;
 }
+
+//template<typename Source, 
+//			template <typename Source::value_type> typename Container1, 
+//			template <typename Source::value_type> typename Container2, typename UnaryOperation>
+template<typename Source,typename Container1, typename Container2, typename UnaryOperation>
+void Separate(Source& source, Container1& container1, Container2& container2, UnaryOperation condition)
+{
+	auto s = begin(source);
+	auto se = end(source);
+	for (; s != se; ++s)
+	{
+		if (condition(*s)) 
+			copy(s, s+1, inserter(container1, container1.begin()));
+		else 
+			copy(s, s+1, inserter(container2, container2.begin()));
+	}
+}

@@ -189,6 +189,9 @@ int main()
 		set<std::string> s{ "abc", "qwerty", "my" };
 		deque<const char*> d{ "111", "22" };
 		auto v3 =  SumCont(s, d) ;
+		//auto v4 = SumCont(d, d);
+		auto v5 = SumCont(d, s);
+		//auto v6 = SumCont(s, ll);
 
 		__asm nop
 	}
@@ -208,7 +211,7 @@ int main()
 		std::vector<int> v{ 1,2,3,4,5 };
 		std::list<int> l; //сюда четные
 		std::deque<int> d; //а сюда нечетные
-		//Separate(v, l, d, <условие>);
+		Separate(v, l, d, [](int x) {return !(x % 2); });
 
 		__asm nop
 	}
@@ -218,6 +221,8 @@ int main()
 		double ar[] = { 0.8, 1.1, 33.3, -4.1, 5.5 };
 		std::set<double> s; //сюда те, которые попадают в [0,6]
 		std::vector<double> v; //сюда остальные
+		Separate(ar, s, v, [](double x) {return (x >= 0) && (x <= 6); });
+		__asm nop
 	}
 
 
