@@ -178,17 +178,17 @@ int main()
 		vector<int> v{ 1,2,3,4 };
 		list<double> l{ 1.1, 2.2, 3.3, 4.4, 5.5 };
 
-		auto v1 = SumCont(v, l);
+		auto v1 =  SumCont(v, l) ;
 
 
 		list<int> ll{ 1, 2, 3, 4, 5, 6, 7, 8 };
 		double ar[] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
-		//auto v2 = SumCont(ar, ll);
+		auto v2 = SumCont(ar, ll);
 
 
 		set<std::string> s{ "abc", "qwerty", "my" };
 		deque<const char*> d{ "111", "22" };
-		auto v3 = SumCont(s, d);
+		auto v3 =  SumCont(s, d) ;
 
 		__asm nop
 	}
