@@ -233,7 +233,8 @@ int main()
 		//  Использовать лямбда функцию
 	{
 		char s[] = "Hello World!";
-		//for_each
+		size_t cnt = 0;
+		for_each(begin(s), end(s), [&cnt](const char c) {if (isupper(c)) cnt++; });
 
 
 		__asm nop
