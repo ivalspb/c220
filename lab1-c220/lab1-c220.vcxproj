@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="func.cpp" />
     <ClCompile Include="lab1-c220.cpp" />
   </ItemGroup>
   <ItemGroup>

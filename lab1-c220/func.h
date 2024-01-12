@@ -12,6 +12,8 @@ inline void PrintAnyCont(auto &Container)
 	cout << endl;
 }
 
+string& operator-(string& s);
+
 template <typename Container>
 void NegateAll(Container& t)
 {
@@ -30,16 +32,16 @@ void NegateAll(Container& t)
 //		}
 //}
 
-template <>
-void NegateAll(list<string>& t)
-{
-	for (auto &s : t)
-		for (auto& c : s)
-		{
-			if (isupper(c)) c = tolower(c);
-			else c = toupper(c);
-		}
-}
+//template <>
+//void NegateAll(list<string>& t)
+//{
+//	for (auto &s : t)
+//		for (auto& c : s)
+//		{
+//			if (isupper(c)) c = tolower(c);
+//			else c = toupper(c);
+//		}
+//}
 
 inline void absSort(auto &container)
 {
@@ -49,12 +51,13 @@ inline void absSort(auto &container)
 template <typename Container1, typename Container2>
 auto SumCont(Container1& container1, Container2& container2)
 {
-	vector<common_type_t<remove_reference_t<decltype(*begin(declval<Container1&>()))>, 
-							remove_reference_t<decltype(*begin(declval<Container2&>()))>>>
-								v_res(max(size(container1), size(container2)));
+	size_t res_size = max(size(container1), size(container2));
+	decltype(*begin(container1) + *begin(container2)) y{};
+	vector<double>	v_res;
+	v_res.resize(res_size);
 	copy(begin(container2), end(container2), v_res.begin());
 	transform(begin(container1), end(container1), v_res.begin(), v_res.begin(), [](auto c1, auto r) {return  c1+ r; });
-	return v_res;
+	return y;
 }
 
 //template<typename Source, 
@@ -73,3 +76,4 @@ void Separate(Source& source, Container1& container1, Container2& container2, Un
 			copy(s, s+1, inserter(container2, container2.begin()));
 	}
 }
+
