@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include <algorithm>
+#include <vector>
  
 using namespace std;
 
@@ -21,48 +22,20 @@ void NegateAll(Container& t)
 		i = -i;
 }
 
-//template <typename Container<string>>
-//void NegateAll(Container& t)
-//{
-//	for (auto &s:t)
-//		for (auto& c : s)
-//		{
-//			if (isupper(c)) c = tolower(c);
-//			else c = toupper(c);
-//		}
-//}
-
-//template <>
-//void NegateAll(list<string>& t)
-//{
-//	for (auto &s : t)
-//		for (auto& c : s)
-//		{
-//			if (isupper(c)) c = tolower(c);
-//			else c = toupper(c);
-//		}
-//}
-
 inline void absSort(auto &container)
 {
-	std::ranges::sort(container, [](auto x, auto y) {return abs(x)<abs(y); });
+	std::sort(begin(container),end(container), [](auto x, auto y) {return abs(x) < abs(y); });
 }
 
 template <typename Container1, typename Container2>
 auto SumCont(Container1& container1, Container2& container2)
-{
-	size_t res_size = max(size(container1), size(container2));
-	decltype(*begin(container1) + *begin(container2)) y{};
-	vector<double>	v_res;
-	v_res.resize(res_size);
+{//надо ли проверять что контейнеры оба не пустые????
+	vector<decltype(*begin(container1) + *begin(container2))>	v_res(max(size(container1), size(container2)));
 	copy(begin(container2), end(container2), v_res.begin());
 	transform(begin(container1), end(container1), v_res.begin(), v_res.begin(), [](auto c1, auto r) {return  c1+ r; });
-	return y;
+	return v_res;
 }
 
-//template<typename Source, 
-//			template <typename Source::value_type> typename Container1, 
-//			template <typename Source::value_type> typename Container2, typename UnaryOperation>
 template<typename Source,typename Container1, typename Container2, typename UnaryOperation>
 void Separate(Source& source, Container1& container1, Container2& container2, UnaryOperation condition)
 {
