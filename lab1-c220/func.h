@@ -2,6 +2,8 @@
 #include<iostream>
 #include <algorithm>
 #include <vector>
+#include <map>
+#include <string>
  
 using namespace std;
 
@@ -50,3 +52,11 @@ void Separate(Source& source, Container1& container1, Container2& container2, Un
 	}
 }
 
+template <typename T> map<string, T> enum_map;
+
+template <typename Enm, typename T = typename Enm::value_type> enum class COLORS& stringToEnum(const string& s)
+{
+	auto it = enum_map<T>.find(s);
+	if (it != enum_map<T>.end()) return it.second;
+	else throw ("This string not incled into enum!");
+}

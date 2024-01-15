@@ -275,7 +275,8 @@ int main()
 
 	{
 		//Например:
-	/*
+		enum class COLORS:char{white,black,blue,green,red};
+
 			COLORS c1;
 			try {
 				c1 = stringToEnum<COLORS>("blue");
@@ -287,7 +288,7 @@ int main()
 
 
 			auto Str = enumToString(c1);
-	*/
+	
 
 		__asm nop
 	}
