@@ -52,11 +52,25 @@ void Separate(Source& source, Container1& container1, Container2& container2, Un
 	}
 }
 
-template <typename T> map<string, T> enum_map;
+enum class COLORS_c :char { white, black, blue, green, red };
+enum class COLORS_i :int { white, black, blue, green, red };
 
-template <typename Enm, typename T = typename Enm::value_type> enum class COLORS& stringToEnum(const string& s)
+template <typename T> map<string, T> enum_map;
+template <> map<string, COLORS_c> enum_map<COLORS_c> = { {"white",COLORS_c::white},
+														{"black",COLORS_c::black},
+														{"blue",COLORS_c::blue},
+														{"green",COLORS_c::green},
+														{"red",COLORS_c::red }};
+
+template <> map<string, COLORS_i> enum_map<COLORS_i> = { {"white",COLORS_i::white},
+														{"black",COLORS_i::black},
+														{"blue",COLORS_i::blue},
+														{"green",COLORS_i::green},
+														{"red",COLORS_i::red } };
+
+template <typename T> auto& stringToEnum(const string& s)
 {
 	auto it = enum_map<T>.find(s);
-	if (it != enum_map<T>.end()) return it.second;
-	else throw ("This string not incled into enum!");
+	if (it != enum_map<T>.end()) return it->second;
+	else throw  std::out_of_range(s+ " not included into enum!");
 }

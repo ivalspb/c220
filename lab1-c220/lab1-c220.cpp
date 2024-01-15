@@ -275,19 +275,21 @@ int main()
 
 	{
 		//Например:
-		enum class COLORS:char{white,black,blue,green,red};
 
-			COLORS c1;
+			COLORS_c c1;
+			COLORS_i c2;
 			try {
-				c1 = stringToEnum<COLORS>("blue");
+				c1 = stringToEnum<COLORS_c>("blue");
+				//c2 = stringToEnum<COLORS_i>("yellow");
 			}
-			catch (...)
-			{
-			//...
-			}
+			catch (const exception& e)
+		{
+			cerr << endl<<"Caught: " << e.what() << endl;
+			cerr << "Type: " << typeid(e).name() << endl;
+		}
 
 
-			auto Str = enumToString(c1);
+			//auto Str = enumToString(c1);
 	
 
 		__asm nop
