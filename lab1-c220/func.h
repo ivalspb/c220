@@ -72,5 +72,13 @@ template <typename T> auto& stringToEnum(const string& s)
 {
 	auto it = enum_map<T>.find(s);
 	if (it != enum_map<T>.end()) return it->second;
-	else throw  std::out_of_range(s+ " not included into enum!");
+	else throw  out_of_range(s+ " not included into enum!");
+}
+
+template <typename T> auto enumToString(const T enm)
+{
+	for (auto i : enum_map<T>)
+		if (i.second == enm)	
+			return i.first;
+	throw out_of_range("Enum value out of map!");
 }

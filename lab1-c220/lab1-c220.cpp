@@ -280,7 +280,7 @@ int main()
 			COLORS_i c2;
 			try {
 				c1 = stringToEnum<COLORS_c>("blue");
-				//c2 = stringToEnum<COLORS_i>("yellow");
+				c2 = stringToEnum<COLORS_i>("yellow");
 			}
 			catch (const exception& e)
 		{
@@ -289,7 +289,7 @@ int main()
 		}
 
 
-			//auto Str = enumToString(c1);
+			auto Str = enumToString(c1);
 	
 
 		__asm nop
