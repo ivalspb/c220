@@ -275,18 +275,17 @@ int main()
 
 	{
 		//Например:
-
 			COLORS_c c1;
 			COLORS_i c2;
 			try {
 				c1 = stringToEnum<COLORS_c>("blue");
-				c2 = stringToEnum<COLORS_i>("yellow");
+				c2 = stringToEnum<COLORS_i>("black");
 			}
 			catch (const exception& e)
-		{
-			cerr << endl<<"Caught: " << e.what() << endl;
-			cerr << "Type: " << typeid(e).name() << endl;
-		}
+			{
+				cerr << endl<<"Caught: " << e.what() << endl;
+				cerr << "Type: " << typeid(e).name() << endl;
+			}
 
 
 			auto Str = enumToString(c1);

@@ -71,7 +71,8 @@ template <> map<string, COLORS_i> enum_map<COLORS_i> = { {"white",COLORS_i::whit
 template <typename T> auto& stringToEnum(const string& s)
 {
 	auto it = enum_map<T>.find(s);
-	if (it != enum_map<T>.end()) return it->second;
+	if (it != enum_map<T>.end()) 
+		return it->second;
 	else throw  out_of_range(s+ " not included into enum!");
 }
 
