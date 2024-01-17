@@ -130,7 +130,7 @@
     <ClCompile Include="lab2-c220.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="unic_vector_range.h" />
+    <ClInclude Include="unic_vector_range_included.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

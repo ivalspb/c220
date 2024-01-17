@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="unic_vector_range.h">
+    <ClInclude Include="unic_vector_range_included.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
