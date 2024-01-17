@@ -26,7 +26,7 @@ void NegateAll(Container& t)
 
 inline void absSort(auto &container)
 {
-	std::sort(begin(container),end(container), [](auto x, auto y) {return abs(x) < abs(y); });
+	std::sort(begin(container),end(container), [](const auto& x, const auto& y) {return abs(x) < abs(y); });
 }
 
 template <typename Container1, typename Container2>
@@ -56,13 +56,13 @@ enum class COLORS_c :char { white, black, blue, green, red };
 enum class COLORS_i :int { white, black, blue, green, red };
 
 template <typename T> map<string, T> enum_map;
-template <> map<string, COLORS_c> enum_map<COLORS_c> = { {"white",COLORS_c::white},
+template <> inline map<string, COLORS_c> enum_map<COLORS_c> = { {"white",COLORS_c::white},
 														{"black",COLORS_c::black},
 														{"blue",COLORS_c::blue},
 														{"green",COLORS_c::green},
 														{"red",COLORS_c::red }};
 
-template <> map<string, COLORS_i> enum_map<COLORS_i> = { {"white",COLORS_i::white},
+template <> inline map<string, COLORS_i> enum_map<COLORS_i> = { {"white",COLORS_i::white},
 														{"black",COLORS_i::black},
 														{"blue",COLORS_i::blue},
 														{"green",COLORS_i::green},
@@ -78,7 +78,7 @@ template <typename T> auto& stringToEnum(const string& s)
 
 template <typename T> auto enumToString(const T enm)
 {
-	for (auto i : enum_map<T>)
+	for (const auto &i : enum_map<T>)
 		if (i.second == enm)	
 			return i.first;
 	throw out_of_range("Enum value out of map!");
