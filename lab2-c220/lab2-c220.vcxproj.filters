@@ -23,5 +23,8 @@
     <ClInclude Include="unic_vector_range_included.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="unic_vector_range_inherit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
