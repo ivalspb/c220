@@ -18,6 +18,9 @@
     <ClCompile Include="lab2-c220.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="myString.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="unic_vector_range_included.h">
@@ -25,6 +28,12 @@
     </ClInclude>
     <ClInclude Include="unic_vector_range_inherit.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyUniquePTR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="myString.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

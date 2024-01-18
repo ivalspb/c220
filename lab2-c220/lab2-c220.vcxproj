@@ -128,8 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lab2-c220.cpp" />
+    <ClCompile Include="myString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="myString.h" />
+    <ClInclude Include="MyUniquePTR.h" />
     <ClInclude Include="unic_vector_range_included.h" />
     <ClInclude Include="unic_vector_range_inherit.h" />
   </ItemGroup>
