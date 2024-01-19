@@ -7,14 +7,15 @@ class MyUniquePTR
 {
 	T* mp;
 public:
-	MyUniquePTR() :mp(nulptr) {};
+	MyUniquePTR() :mp(nullptr) {};
 	MyUniquePTR(const MyUniquePTR<T>& other) = delete;
-	MyUniquePTR(MyUniquePTR<T>&& tmp_other) noexcept;
+	MyUniquePTR(MyUniquePTR<T>&& tmp_other) :mp(std::move(tmp_other.mp)) { tmp_other.mp = nullptr; } 
 	MyUniquePTR& operator=(const MyUniquePTR<T>& other)=delete;
-	MyUniquePTR& operator=(MyUniquePTR<T>&& tmp_other) noexcept;
+	MyUniquePTR& operator=(MyUniquePTR<T>&& tmp_other);
 	explicit MyUniquePTR(T* other_p):mp(other_p){}
 	explicit operator bool() const {return mp;}
-	T& operator*() const {return *mp}
+	T& operator*() const { return *mp; }
+	T* operator->() const {return mp;}
 	//MyUniquePTR(const T* other_p);
 	~MyUniquePTR(){delete mp;}
 	MyUniquePTR& operator=(T* othet_p);
@@ -24,14 +25,9 @@ public:
 	void reset();
 };
 
-template <typename T>
-inline MyUniquePTR<T>::MyUniquePTR(MyUniquePTR<T> &&tmp_other):mp(std::move(tmp_other.mp))
-{
-	tmp_other.mp=nullptr;
-}
 
 template <typename T>
-inline MyUniquePTR &MyUniquePTR<T>::operator=(MyUniquePTR<T> &&tmp_other)
+inline MyUniquePTR<T>& MyUniquePTR<T>::operator=(MyUniquePTR<T>&& tmp_other)
 {
 	if(this==tmp_other) return *this;
 	if(mp) delete mp;
@@ -41,7 +37,7 @@ inline MyUniquePTR &MyUniquePTR<T>::operator=(MyUniquePTR<T> &&tmp_other)
 }
 
 template <typename T>
-inline MyUniquePTR &MyUniquePTR<T>::operator=(T *other_p)
+inline MyUniquePTR<T> &MyUniquePTR<T>::operator=(T *other_p)
 {
     if (mp) delete mp;
 	mp=other_p;
