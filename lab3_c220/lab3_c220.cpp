@@ -15,8 +15,7 @@ int main()
     q1.push("qqq");
     MyQueue < MyString > q2 = q1;
     MyQueue < MyString > q22 = std::move(q1);
-    MyQueue < MyString > q3 { 10, MyString("!") }; // очередь должна содержать 10 элементов
-    // со строкой «!»
+    MyQueue < MyString > q3 { 10, MyString("!") }; // очередь должна содержать 10 элементов со строкой «!»
     q1 = q3;
     q2 = MyQueue < MyString >(5, MyString(" ? "));
     q1 = { MyString("“bbb”"), MyString("“ssss”") }; // оператор присваивания по списку инициализации
