@@ -72,8 +72,4 @@ inline void MyUniquePTR<T>::reset()
 	delete tmp;
 }
 
-// template <typename T>
-// inline MyUniquePTR<T>::MyUniquePTR(const T *other_p)
-// {
-// }
 
