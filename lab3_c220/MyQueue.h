@@ -34,7 +34,8 @@ public:
 	MyQueue& operator= (MyQueue&&);
 	
 	// методы, реализующие функциональность очереди
-	void push(T& t);
+	void push(const T& t);
+	void push(T&& t_tmp);
 	T pop();
 	
 		// а также, методы, необходимые для выполнения задания
@@ -111,9 +112,54 @@ inline typename MyQueue<T>& MyQueue<T>::operator=(typename MyQueue<T>&& other_tm
 }
 
 template<typename T>
-inline void MyQueue<T>::push(T& t)
+inline void MyQueue<T>::push(const T& t)
 {
+	if (m_n == m_cap - 1)
+	{
+		T* enlarged_p = new T[m_cap + delta];
+		for (size_t i = 0; i < m_n; i++)
+			enlarged_p[i] = std::move(m_p[(m_first + i) % m_cap]);
+		delete[] m_p;
+		m_p = enlarged_p;
+		enlarged_p = nullptr;
+		m_cap += delta;
+		m_first = 0;
+		m_last = m_n;
+	}
+	m_p[(m_first + m_n)%m_cap] = t;
+	m_n++;
 
+}
+
+template<typename T>
+inline void MyQueue<T>::push(T&& t_tmp)
+{
+	if (m_n == m_cap - 1)
+	{
+		T* enlarged_p = new T[m_cap + delta];
+		for (size_t i = 0; i < m_n; i++)
+			enlarged_p[i] = std::move(m_p[(m_first + i) % m_cap]);
+		delete[] m_p;
+		m_p = enlarged_p;
+		enlarged_p = nullptr;
+		m_cap += delta;
+		m_first = 0;
+		m_last = m_n;
+	}
+	m_p[(m_first + m_n) % m_cap] = std::move(t_tmp);
+	m_n++;
+
+}
+
+template<typename T>
+inline T MyQueue<T>::pop()
+{
+	T res{};
+	if (m_n)
+	{
+		res = std::move(m_n[m_first]);
+	}
+	return res;
 }
 
 
