@@ -101,12 +101,19 @@ inline typename MyQueue<T>& MyQueue<T>::operator=(typename MyQueue<T>&& other_tm
 		m_cap = other_tmp.m_cap;
 		m_first = other_tmp.m_first;
 		m_last = other_tmp.m_last;
+		delete[] m_p;
 		m_p = other_tmp.m_p;
 		other_tmp.m_p=nullptr;
 		other_tmp.m_n = other_tmp.m_first = other_tmp.m_last = 0;
 		other_tmp.m_cap = 1;
 	}
 	return this;
+}
+
+template<typename T>
+inline void MyQueue<T>::push(T& t)
+{
+
 }
 
 
