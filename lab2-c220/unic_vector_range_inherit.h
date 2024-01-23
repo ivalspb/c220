@@ -7,7 +7,7 @@
 template <typename T, typename Compare = std::less<T> >
 class UnicVectorRange_inherit :private std::vector<T>
 {
-	T lower_bound, upper_bound;
+	T lower_bound{}, upper_bound{};
 	typedef std::vector<T> vector;
 public:
 	UnicVectorRange_inherit() = default;

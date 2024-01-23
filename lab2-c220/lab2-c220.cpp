@@ -14,7 +14,9 @@ int main(int argc, char** argv)
 		std::cout << "init unic vector<int> at [0,3]:\n";
 		UnicVectorRange_included<int> vi1({ 3,2,4,-3,1,3 }, 0, 3);
 		std::copy(vi1.begin(), vi1.end(), std::ostream_iterator<int>(std::cout, ", "));
-		vi1.sort();
+		//vi1.sort(std::greater<>());
+		vi1.sort();	
+
 		vi1.set_range(-3, +3);
 		vi1.push_2unic({ 0,-2,4,-1,2 });
 		std::cout << "\nsort + set_range [-3,3] + push vector:\n";
@@ -33,7 +35,7 @@ int main(int argc, char** argv)
 		std::cout << "init unic vector <string> at [ab,bc]\n";
 		UnicVectorRange_included < std::string> vs1({ "aaa","abc","def","back","bcd","aba" }, "ab", "bc");
 		std::copy(vs1.begin(), vs1.end(), std::ostream_iterator<std::string>(std::cout, ", "));
-		vs1.sort();
+		vs1.sort(std::less<>());
 		vs1.set_range("aa", "ba");
 		std::cout << "\nsort + set_range [aa,ba]:\n";
 		std::copy(vs1.begin(), vs1.end(), std::ostream_iterator<std::string>(std::cout, ", "));
@@ -76,19 +78,19 @@ int main(int argc, char** argv)
 	std::cout << "\n--------------------------------\n";
 	std::cout << "\n--------------------------------\n";
 
-	{
-		MyUniquePTR<MyString> p1(new MyString("abc"));
-		std::cout << p1->GetString();
-		p1->SetNewString("qwerty");
-		MyString  s2 = *p1;
-		//MyUniquePTR< MyString > p2=p1; //здесь компилятор должен выдавать ошибку => Исправьте!
-		if (p1) { std::cout << "No object!" }; //а это должно работать
-		MyUniquePTR< MyString > p3(new MyString("vvv"));
-		//p3 = p2; //и здесь компилятор должен выдавать ошибку
-		vector< MyUniquePTR< MyString >> v; //как проинициализировать???
-		list< MyUniquePTR< MyString >> l;
-		//как скопировать из v в l ???
-	}
+	//{
+	//	MyUniquePTR<MyString> p1(new MyString("abc"));
+	//	std::cout << p1->GetString();
+	//	p1->SetNewString("qwerty");
+	//	MyString  s2 = *p1;
+	//	//MyUniquePTR< MyString > p2=p1; //здесь компилятор должен выдавать ошибку => Исправьте!
+	//	if (p1) { std::cout << "No object!" }; //а это должно работать
+	//	MyUniquePTR< MyString > p3(new MyString("vvv"));
+	//	//p3 = p2; //и здесь компилятор должен выдавать ошибку
+	//	vector< MyUniquePTR< MyString >> v; //как проинициализировать???
+	//	list< MyUniquePTR< MyString >> l;
+	//	//как скопировать из v в l ???
+	//}
 
 
 	return 0;
