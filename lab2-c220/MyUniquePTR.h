@@ -12,7 +12,8 @@ public:
 	MyUniquePTR(MyUniquePTR<T>&& tmp_other) :mp(std::move(tmp_other.mp)) { tmp_other.mp = nullptr; } 
 	MyUniquePTR& operator=(const MyUniquePTR<T>& other)=delete;
 	MyUniquePTR& operator=(MyUniquePTR<T>&& tmp_other);
-	explicit MyUniquePTR(T* other_p):mp(other_p){}
+	explicit MyUniquePTR(T* other_p);
+	explicit MyUniquePTR(T&& tmp_p);
 	explicit operator bool() const {return mp;}
 	T& operator*() const { return *mp; }
 	T* operator->() const {return mp;}
@@ -34,6 +35,18 @@ inline MyUniquePTR<T>& MyUniquePTR<T>::operator=(MyUniquePTR<T>&& tmp_other)
     mp=std::move(tmp_other.mp);
 	tmp_other.mp=nullptr;
 	return mp;
+}
+
+template<typename T>
+inline MyUniquePTR<T>::MyUniquePTR(T* other_p)
+{
+	mp = other_p;
+}
+
+template<typename T>
+inline MyUniquePTR<T>::MyUniquePTR(T&& tmp_p)
+{
+	mp = std::move(tmp_p);
 }
 
 template <typename T>
