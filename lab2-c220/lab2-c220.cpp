@@ -93,7 +93,7 @@ int main(int argc, char** argv)
 		v.push_back(std::move(new MyString("2b2"))); //как проинициализировать??? никак)
 		list< MyUniquePTR< MyString >> l;
 		std::copy(std::make_move_iterator(v.begin()), std::make_move_iterator(v.end()),std::inserter(l,l.begin()));
-		//как скопировать из v в l ???
+		//как скопировать из v в l ??? только переместить
 		
 	}
 

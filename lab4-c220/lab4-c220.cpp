@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iterator>
 #include <memory>
+#include "my_constexpr.h"
 
 	using namespace std;
 
@@ -27,19 +28,19 @@
 		//				посредством constexpr-функции:
 
 		{	//Например:
-			//int ar[factorial(3)];
+			int ar[factr_cnstexpr(3)];
 
 			//или
-			//constexpr int n = factorial(5);
-			//int ar1[n];
+			constexpr int n = factr_cnstexpr(5);
+			int ar1[n];
 
 			//попробуйте:
-			//int m = 7;
-			//constexpr int n1 = factorial(m);
+			auto m = 7.8;
+			//constexpr int n1 = factr_cnstexpr(m);
 			//int ar1[n1];
 
 			//а так?
-			//int n2 = factorial(m);
+			int n2 = factr_cnstexpr(m);
 			__asm nop
 		}
 
