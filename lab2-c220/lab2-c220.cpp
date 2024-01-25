@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include <iterator>
+#include <algorithm>
 #include "myString.h"
 #include "MyUniquePTR.h"
 
@@ -87,11 +88,13 @@ int main(int argc, char** argv)
 		if (p1) { std::cout << "\nNo object!"; } //а это должно работать
 		MyUniquePTR< MyString > p3(new MyString("vvv"));
 		//p3 = p2; //и здесь компилятор должен выдавать ошибку
-		vector< MyUniquePTR< MyString >> v(2);
-		v= std::move({ new MyString("1a1"),  new MyString("2b2") }); //как проинициализировать???
+		vector< MyUniquePTR< MyString >> v;
+		v.push_back(std::move(new MyString("1a1")));
+		v.push_back(std::move(new MyString("2b2"))); //как проинициализировать??? никак)
 		list< MyUniquePTR< MyString >> l;
+		std::copy(std::make_move_iterator(v.begin()), std::make_move_iterator(v.end()),std::inserter(l,l.begin()));
 		//как скопировать из v в l ???
-		//std::copy(v.begin(), v.end(), l.begin());
+		
 	}
 
 
