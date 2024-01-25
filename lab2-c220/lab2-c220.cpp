@@ -87,7 +87,8 @@ int main(int argc, char** argv)
 		if (p1) { std::cout << "\nNo object!"; } //а это должно работать
 		MyUniquePTR< MyString > p3(new MyString("vvv"));
 		//p3 = p2; //и здесь компил€тор должен выдавать ошибку
-		//vector< MyUniquePTR< MyString >> v{new MyString("1a1"), new MyString("2b2")}; //как проинициализировать???
+		vector< MyUniquePTR< MyString >> v(2);
+		v= std::move({ new MyString("1a1"),  new MyString("2b2") }); //как проинициализировать???
 		list< MyUniquePTR< MyString >> l;
 		//как скопировать из v в l ???
 		//std::copy(v.begin(), v.end(), l.begin());
