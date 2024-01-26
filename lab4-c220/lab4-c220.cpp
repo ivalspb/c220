@@ -61,7 +61,8 @@
 
 		{
 			//constexpr const char* test_cahr_bin = "100000000";
-			int dec_res = 100_b;
+			int dec_res = 0001_b;
+
 
 			__asm nop
 
