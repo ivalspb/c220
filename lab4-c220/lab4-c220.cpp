@@ -61,9 +61,9 @@
 
 		{
 			//constexpr const char* test_cahr_bin = "100000000";
-			int dec_res = 0001_b;
+			//int dec_res = 0001_b;
 
-
+			constexpr int len = get_lenght_chars("1000");
 			__asm nop
 
 		}
