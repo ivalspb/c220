@@ -30,9 +30,9 @@ inline MyUniquePTR<T>& MyUniquePTR<T>::operator=(MyUniquePTR<T>&& tmp_other)
 {
 	if(this==tmp_other) return *this;
 	if(mp) delete mp;
-    mp=std::move(tmp_other.mp);
+    mp=tmp_other.mp;
 	tmp_other.mp=nullptr;
-	return mp;
+	return *this;
 }
 
 

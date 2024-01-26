@@ -89,8 +89,8 @@ int main(int argc, char** argv)
 		MyUniquePTR< MyString > p3(new MyString("vvv"));
 		//p3 = p2; //и здесь компилятор должен выдавать ошибку
 		vector< MyUniquePTR< MyString >> v;
-		v.push_back(std::move(new MyString("1a1")));
-		v.push_back(std::move(new MyString("2b2"))); //как проинициализировать??? никак)
+		v.push_back(new MyString("1a1"));
+		v.push_back(new MyString("2b2")); //как проинициализировать??? никак)
 		list< MyUniquePTR< MyString >> l;
 		std::copy(std::make_move_iterator(v.begin()), std::make_move_iterator(v.end()),std::inserter(l,l.begin()));
 		//как скопировать из v в l ??? только переместить

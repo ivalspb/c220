@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lab4-c220.cpp" />
+    <ClCompile Include="my_constexpr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_constexpr.h" />

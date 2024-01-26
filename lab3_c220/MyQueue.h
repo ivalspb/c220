@@ -1,6 +1,7 @@
 #pragma once
 #include <utility>
 #include <initializer_list>
+#include <iostream>
 
 template <typename T>
 class MyQueue
@@ -36,11 +37,13 @@ public:
 	MyQueue(MyQueue&&);
 	MyQueue& operator= (const MyQueue&);
 	MyQueue& operator= (MyQueue&&);
+	MyQueue& operator=(std::initializer_list<T> l);
 	
 	// методы, реализующие функциональность очереди
 	void push(const T& t);
 	void push(T&& t_tmp);
 	T pop();
+	void printMyQueue();
 	
 		// а также, методы, необходимые для выполнения задания
 };
@@ -58,7 +61,7 @@ inline MyQueue<T>::~MyQueue()
 }
 
 template<typename T>
-inline MyQueue<T>::MyQueue(const typename MyQueue<T>& other):m_p(new T[other.m_cap]), m_n(other.m_n), m_cap(other.m_cap)
+inline MyQueue<T>::MyQueue(const typename MyQueue<T>& other):m_p(new T[other.m_n + 1]), m_n(other.m_n), m_cap(other.m_n + 1)
 {
 	//Перезапись кругового буфера (копирование)
 	//При перезаписи данных из старого динамического массива в новый данные	«разворачиваем», копируем от first_old до last_old.
@@ -71,6 +74,9 @@ inline MyQueue<T>::MyQueue(const typename MyQueue<T>& other):m_p(new T[other.m_c
 template<typename T>
 inline MyQueue<T>::MyQueue(std::initializer_list<T> l)
 {
+	m_cap = l.size() + 1;
+	m_p = new T[m_cap];
+	m_n = 0;
 	for (auto&& i : l) this->push(i);
 }
 
@@ -96,15 +102,15 @@ inline MyQueue<T>::MyQueue(MyQueue&& other_tmp):m_p(other_tmp.m_p),m_n(other_tmp
 }
 
 template<typename T>
-inline typename MyQueue<T>& MyQueue<T>::operator=(const typename MyQueue<T>& other)
+inline  MyQueue<T>& MyQueue<T>::operator=(const  MyQueue<T>& other)
 {
-	//if (other != this)
+	if (&other != this)
 	{
 		m_n = other.m_n;
 		if (m_n >= m_cap)
 		{
 			delete[] m_p;
-			m_cap = other.m_cap;
+			m_cap = other.m_n + 1;
 			m_p = new T[m_cap];
 		}
 		m_first = 0;
@@ -116,9 +122,9 @@ inline typename MyQueue<T>& MyQueue<T>::operator=(const typename MyQueue<T>& oth
 }
 
 template<typename T>
-inline typename MyQueue<T>& MyQueue<T>::operator=(typename MyQueue<T>&& other_tmp)
+inline  MyQueue<T>& MyQueue<T>::operator=(typename MyQueue<T>&& other_tmp)
 {
-	//if (this != other_tmp)
+	if (this != &other_tmp)
 	{
 		m_n = other_tmp.m_n;
 		m_cap = other_tmp.m_cap;
@@ -131,6 +137,27 @@ inline typename MyQueue<T>& MyQueue<T>::operator=(typename MyQueue<T>&& other_tm
 		other_tmp.m_cap = 1;
 	}
 	return *this;
+}
+
+template<typename T>
+inline  MyQueue<T>& MyQueue<T>::operator=(std::initializer_list<T> l)
+{
+	m_n = l.size();
+	if (m_n >= m_cap)
+	{
+		delete[] m_p;
+		m_cap = m_n + 1;
+		m_p = new T[m_cap];
+	}
+	m_first = 0;
+	m_last = m_n;
+	for (size_t i=0;auto& k:l)
+	{
+		m_p[i] = k;
+		i++;
+	}
+
+return *this; 
 }
 
 template<typename T>
@@ -180,10 +207,21 @@ inline T MyQueue<T>::pop()
 	if (m_n)
 	{
 		res = std::move(m_p[m_first]);
-		m_first = (m_first + 1)%m_cap;
+		m_first = (m_first + 1) % m_cap;
 		m_n--;
+		return res;
+
 	}
-	return res;
+	else throw std::out_of_range("My Queue is empty! Nothing to pop!");
+}
+
+template<typename T>
+inline void MyQueue<T>::printMyQueue()
+{
+	std::cout << "\nRaw array:\n";
+	for (size_t i = 0; i < m_cap; i++) std::cout << m_p[i] << " ";
+	std::cout << "\nMy Queue:\n";
+	for (const auto& el : *this) std::cout << el << " ";
 }
 
 
