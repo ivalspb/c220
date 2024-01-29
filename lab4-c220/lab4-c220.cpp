@@ -35,7 +35,7 @@
 			int ar1[n];
 
 			//попробуйте:
-			auto m = 7.8;
+			auto m = 7;
 			//constexpr int n1 = factr_cnstexpr(m);
 			//int ar1[n1];
 
@@ -60,12 +60,8 @@
 		//		  компилятор вычислит результат вызова рекурсивной функции на этапе компиляции)
 
 		{
-			//constexpr const char* test_cahr_bin = "100000000";
-			//int dec_res = 0001_b;
-
-			constexpr int len = get_lenght_chars("1000");
+			constexpr int dec_res = 100000000_b;
 			__asm nop
-
 		}
 
 		//Задание 2b. Перевод в строковое двоичное представление, например: 256 -> "0b100000000"
@@ -76,7 +72,7 @@
 		//Подсказка: количество разрядов в байте определяет константа CHAR_BIT - <cstdint>
 
 		{
-			//std::string sBin= 256_toBinStr;
+			std::string sBin= 256_toBinStr;
 			__asm nop
 		}
 
