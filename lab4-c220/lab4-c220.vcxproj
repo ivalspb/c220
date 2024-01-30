@@ -132,6 +132,7 @@
     <ClCompile Include="my_constexpr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyRange.h" />
     <ClInclude Include="my_constexpr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

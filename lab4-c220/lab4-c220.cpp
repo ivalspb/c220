@@ -5,6 +5,7 @@
 #include <iterator>
 #include <memory>
 #include "my_constexpr.h"
+#include "MyRange.h"
 
 	using namespace std;
 
@@ -92,7 +93,13 @@
 		//Проверьте тот факт, что компилятор вычисляет значение на этапе компиляции. 
 
 		{
-
+			constexpr int min = -2;
+			constexpr int max = 10;
+			constexpr MyRange<int> m_rng(min, max);
+			constexpr int get_min = m_rng.get_min();
+			constexpr int get_max = m_rng.get_max();
+			constexpr bool check = m_rng.is_entry(2);
+			constexpr int ranged = m_rng.ranged(rand() % 100 - 50);
 			__asm nop
 		}
 		/***************************************************************/
