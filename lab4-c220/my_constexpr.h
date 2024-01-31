@@ -1,7 +1,14 @@
 #pragma once
-//#include <iostream>
+#include <iostream>
 #include <cstdint>
 #include <string>
+#include <iterator>
+#include <vector>
+#include <list>
+#include <deque>
+#include <set>
+#include <type_traits>
+
 
 constexpr int factr_cnstexpr(int t)
 {
@@ -31,3 +38,15 @@ constexpr  int operator""_b(const char* bn_chrs)
 }
 
 std::string operator""_toBinStr(unsigned long long digit);
+
+template <typename T>
+void printContainer(T& t)
+{
+	std::cout << std::endl;
+	if constexpr (std::is_pointer_v<std::remove_reference_t<decltype(*(std::begin(t)))>>)
+		for (auto i=std::begin(t);i!=std::end(t);++i) 
+			std::cout << **i << " ";
+	else
+		for (auto i = std::begin(t); i != std::end(t); ++i)
+			std::cout << *i << " ";
+}

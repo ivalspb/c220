@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cstdint>
 #include <algorithm>
-#include <iterator>
 #include <memory>
 #include "my_constexpr.h"
 #include "MyRange.h"
@@ -98,8 +97,8 @@
 			constexpr MyRange<int> m_rng(min, max);
 			constexpr int get_min = m_rng.get_min();
 			constexpr int get_max = m_rng.get_max();
-			constexpr bool check = m_rng.is_entry(2);
-			constexpr int ranged = m_rng.ranged(rand() % 100 - 50);
+			constexpr bool check = m_rng.is_entry(20);
+			constexpr int ranged = m_rng.ranged(100);
 			__asm nop
 		}
 		/***************************************************************/
@@ -111,13 +110,44 @@
 		Подсказки: if constexpr
 		*/
 		{
+			vector<string> v_val{"aaa_v", "bbb_v", "ccc_v"};
+			list<string> l_val{"aaa_l", "bbb_l", "ccc_l"};
+			deque<string> d_val{"aaa_d", "bbb_d", "ccc_d"};
+			set<string> s_val{"aaa_s", "bbb_s", "ccc_s"};
+			string ar_val[]={"aaa_ar", "bbb_ar", "ccc_ar"};
 
+			printContainer(v_val);
+			printContainer(l_val);
+			printContainer(d_val);
+			printContainer(s_val);
+			printContainer(ar_val);
+
+			vector<string*> v_ptr{new string("aaa_pv"), new string("bbb_pv"), new string("ccc_pv")};
+			list<string*> l_ptr{new string("aaa_pl"), new string("bbb_pl"), new string("ccc_pl")};
+			deque<string*> d_ptr{new string("aaa_pd"), new string("bbb_pd"), new string("ccc_pd")};
+			set<string*> s_ptr{new string("aaa_ps"), new string("bbb_ps"), new string("ccc_ps")};
+			string* ar_ptr[] = { new string("aaa_par"), new string("bbb_par"), new string("ccc_par") };
+
+			printContainer(v_ptr);
+			printContainer(l_ptr);
+			printContainer(d_ptr);
+			printContainer(s_ptr);
+			printContainer(ar_ptr);
+
+			for (auto& i : v_ptr) delete i;
+			for (auto& i : l_ptr) delete i;
+			for (auto& i : d_ptr) delete i;
+			for (auto& i : s_ptr) delete i;
+			for (auto& i : ar_ptr) delete i;
+		
+			__asm nop
 		}
 
 		/***************************************************************/
 		//Задание 5.
 			/* Реализуйте шаблон функции сложения двух значений.
-			Если первое слагаемое является вектором, то все элементы вектора нужно увеличить на значение второго параметра. При этом элементы вектора и второй параметр должны быть одного и того же типа.
+			Если первое слагаемое является вектором, то все элементы вектора нужно увеличить на значение второго параметра.
+			При этом элементы вектора и второй параметр должны быть одного и того же типа.
 			Подсказки: if constexpr, is_same
 			*/
 		{
