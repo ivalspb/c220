@@ -52,16 +52,16 @@ void printContainer(T& t)
 }
 
 template <typename T, typename U>
-auto& my_sum(T& t, U& u)
+auto my_sum(const T& t, const U& u)
 {
-	//if constexpr (std::is_same_v < std::vector<T>, T>)//U=vector<T>
-	//{
-	//	U res = u;
-	//	for (auto& i : res) i = i + t;
-	//	return res;
-	//}
-	//else
-	//{
+	if constexpr (std::is_same_v < std::vector<T>, U>)//U=vector<T>
+	{
+		U res = u;
+		for (auto& i : res) i = i + t;
+		return res;
+	}
+	else
+	{
 		if constexpr (std::is_same_v < std::vector<U>, T>)//T=vector<U>
 		{
 			T res = t;
@@ -73,5 +73,5 @@ auto& my_sum(T& t, U& u)
 			decltype(t+u) res = t + u;
 			return res;
 		}
-	//}
+	}
 }
