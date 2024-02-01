@@ -151,6 +151,18 @@
 			Подсказки: if constexpr, is_same
 			*/
 		{
+			constexpr int i1 = 2;
+			constexpr double d1 = 3.3;
+			std::vector<int> v1{1,2,3};
+			std::vector<double>u1{ 1.1,2.2,3.3 };
+
+
+			auto res1 = my_sum(i1, d1);
+			auto res2 = my_sum(v1,i1);
+			//auto res3 = my_sum(d1, u1);
+			//auto res4 = my_sum(v1, u1);
+			//auto res5 = my_sum(v1, d1);
+			__asm nop
 
 		}
 
