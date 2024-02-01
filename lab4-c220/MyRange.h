@@ -3,8 +3,10 @@
 template <typename T>
 class MyRange
 {
-	T min_r{};
-	T max_r{};
+	//Эта информация предоставляется через специализации шаблона numeric_limits. 
+	//В стандартной библиотеке доступны специализации для всех арифметических типов
+	T min_r=std::numeric_limits<T>::min();
+	T max_r=std::numeric_limits<T>::max();
 public:
 	constexpr MyRange(const T& min, const T& max):min_r(min),max_r(max){}
 	constexpr T get_min() const { return min_r; }

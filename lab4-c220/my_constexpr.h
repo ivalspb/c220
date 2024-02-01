@@ -50,3 +50,5 @@ void printContainer(T& t)
 		for (auto i = std::begin(t); i != std::end(t); ++i)
 			std::cout << *i << " ";
 }
+
+template <typename T, typename U>
