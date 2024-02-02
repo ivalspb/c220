@@ -75,3 +75,51 @@ auto my_sum(const T& t, const U& u)
 		}
 	}
 }
+
+template <typename AdapterContainer>
+void printAdapterContainer(const AdapterContainer c)
+{
+	std::cout << std::endl;
+	if constexpr (std::is_same_v<std::queue<typename AdapterContainer::value_type>, AdapterContainer>)
+	{
+		if constexpr (std::is_pointer_v<std::remove_reference_t<decltype(c.front())>>)
+		{
+			while (!c.empty())
+			{
+				std::cout << *(c.front()) << " ";
+				c.pop();
+			}
+			std::cout << "\n=============\n";
+		}
+		else
+		{
+			while (!e.empty())
+			{
+				std::cout << e.front() << " ";
+				e.pop();
+			}
+			std::cout << "\n=============\n";
+		}
+	}
+	else
+	{
+		if constexpr (std::is_pointer_v<std::remove_reference_t<decltype(c.top())>>)
+		{
+			while (!c.empty())
+			{
+				std::cout << *(c.top()) << " ";
+				c.pop();
+			}
+			std::cout << "\n=============\n";
+		}
+		else
+		{
+			while (!c.empty())
+			{
+				std::cout << c.top() << " ";
+				c.pop();
+			}
+			std::cout << "\n=============\n";
+		}
+	}
+}
