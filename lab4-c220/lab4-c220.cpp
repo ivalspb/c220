@@ -175,7 +175,31 @@
 		Предусмотрите вывод значений, если в адаптере хранятся указатели.
 		*/
 		{
+			stack<string> stack_val({"aaa_stack", "bbb_stack", "ccc_stack"});
+			queue<string> queue_val({ "aaa_queue", "bbb_queue", "ccc_queue" });
+			std::initializer_list il1{ "aaa_priority_queue", "bbb_priority_queue", "ccc_priority_queue" };
+			priority_queue<string> priority_queue_val(il1.begin(),il1.end());
+			
+			printAdapterContainer(stack_val);
+			printAdapterContainer(queue_val);
+			printAdapterContainer(priority_queue_val);
+			
+			std::initializer_list il2{ new string("aaa_pstack"), new string("bbb_pstack"), new string("ccc_pstack") };
+			stack<string*> stack_ptr(il2);
+			std::initializer_list il3{ new string("aaa_pqueue"), new string("bbb_pqueue"), new string("ccc_pqueue") };
+			queue<string*> queue_ptr(il3);
+			std::initializer_list il4{new string("aaa_ppriority_queue"), new string("bbb_ppriority_queue"), new string("ccc_ppriority_queue")};
+			priority_queue<string*> priority_queue_ptr(il4.begin(),il4.end());
 
+			printAdapterContainer(stack_ptr);
+			printAdapterContainer(queue_ptr);
+			printAdapterContainer(priority_queue_ptr);
+	
+			for (auto& i : il2) delete i;
+			for (auto& i : il3) delete i;
+			for (auto& i : il4) delete i;
+		
+			__asm nop
 		}
 
 		/***************************************************************/
