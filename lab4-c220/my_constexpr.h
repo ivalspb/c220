@@ -79,7 +79,7 @@ auto my_sum(const T& t, const U& u)
 }
 
 template <typename AdapterContainer>
-void printAdapterContainer(const AdapterContainer c)
+void printAdapterContainer(AdapterContainer c)
 {
 	std::cout << std::endl;
 	if constexpr (std::is_same_v<std::queue<typename AdapterContainer::value_type>, AdapterContainer>)
@@ -91,16 +91,14 @@ void printAdapterContainer(const AdapterContainer c)
 				std::cout << *(c.front()) << " ";
 				c.pop();
 			}
-			std::cout << "\n=============\n";
 		}
 		else
 		{
-			while (!e.empty())
+			while (!c.empty())
 			{
-				std::cout << e.front() << " ";
-				e.pop();
+				std::cout << c.front() << " ";
+				c.pop();
 			}
-			std::cout << "\n=============\n";
 		}
 	}
 	else
@@ -112,7 +110,6 @@ void printAdapterContainer(const AdapterContainer c)
 				std::cout << *(c.top()) << " ";
 				c.pop();
 			}
-			std::cout << "\n=============\n";
 		}
 		else
 		{
@@ -121,7 +118,6 @@ void printAdapterContainer(const AdapterContainer c)
 				std::cout << c.top() << " ";
 				c.pop();
 			}
-			std::cout << "\n=============\n";
 		}
 	}
 }
