@@ -121,3 +121,49 @@ void printAdapterContainer(AdapterContainer c)
 		}
 	}
 }
+
+template <typename T>
+constexpr T Smth()
+{
+	if constexpr (std::is_same_v<T, int>) return 1;
+	else
+	{
+		if constexpr (std::is_same_v<T, double>) return 2.2;
+		else
+		{
+			if constexpr (std::is_same_v<T, std::string>) return "abc";
+		}
+	}
+}
+
+
+template<typename T, size_t size> 
+class MyArray
+{
+	T ar[size] = {}; //как обеспечить инициализацию элементов базового типа по умолчанию нулем?
+
+public:
+	MyArray() = default;
+	constexpr MyArray(const T* source_ar, const size_t source_size):ar(source_ar)
+	{
+		if (!(source_size < size))
+		{
+			for (size_t i = 0; i < size; i++)
+				ar[i] = source_ar[i];
+		}
+		else
+		{
+			for (size_t i = 0; i < source_size; i++)
+				ar[i] = source_ar[i];
+		}
+	}
+	MyArray(const MyArray& other);
+
+};
+
+template <typename const char*,size_t size>
+MyArray<const char*,size_t>::MyArray(const char* source_ar)->MyArray<char*,1+sizeof(source_ar)>
+{
+
+}
+

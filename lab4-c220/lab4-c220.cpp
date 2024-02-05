@@ -207,9 +207,10 @@
 		/* 	Реализуйте шаблон constexpr функции Smth(), которая должна возвращать значения разного типа
 		Подсказки: constexpr, if constexpr
 		*/
-		//constexpr int res1 = /*<вызов Smth()>;*/ //res1 = 1
-		//constexpr double res2 = /*<вызов Smth()>; */ //res2 = 2.2
-		//  /*constexpr???*/ std::string res3 = /*<вызов Smth()>; */ //res3 = "abc"
+		constexpr int res1 = Smth<int>(); //res1 = 1
+		constexpr double res2 = Smth<double>(); //res2 = 2.2
+		  /*constexpr???*/ std::string res3 = Smth<std::string>(); //res3 = "abc"
+		  __asm nop
 
 
 		//***************************************************************/
@@ -218,33 +219,20 @@
 			/*Пользовательский deduction guide – для вывода типов параметров шаблона
 			Задан шаблон класса, который инкапсулирует внедренный ограниченный массив известной
 			размерности с элементами любого типа. */
-			/*
-			template<typename T, size_t size> class MyArray
-				{
-					T ar[size]; //как обеспечить инициализацию элементов базового типа по умолчанию нулем?
-					…
-					public:
-					MyArray(const T*[, возможно другие параметры]);
-
-
-				};
-
-			*/
-			/*
+			
+			
 			//Требуется обеспечить работоспособность приведенных примеров использования.
-				{
-					MyArray<int, 5> ar1;//MyArray<int,5>
-	MyArray<char, 5> ar2{"ABCqwerty"};//MyArray<char,5>
+	{
+		MyArray<int, 5> ar1;//MyArray<int,5>
+		MyArray<char, 5> ar2{"ABCqwerty"};//MyArray<char,5>
 
-					MyArray ar3{"ABC"}; //MyArray<char,4>
+		//MyArray ar3{"ABC"}; //MyArray<char,4>
 
-	int ar[] = { 1,2,3 };
-					MyArray ar4{ ar };
-
-				}
-			*/
-
+		//int ar[] = { 1,2,3 };
+		//MyArray ar4{ ar };
+	__asm nop
 
 	}
+}
 
 
