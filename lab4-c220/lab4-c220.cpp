@@ -226,10 +226,10 @@
 		MyArray<int, 5> ar1;//MyArray<int,5>
 		MyArray<char, 5> ar2{"ABCqwerty"};//MyArray<char,5>
 
-		//MyArray ar3{"ABC"}; //MyArray<char,4>
+		MyArray ar3{"ABC"}; //MyArray<char,4>
 
-		//int ar[] = { 1,2,3 };
-		//MyArray ar4{ ar };
+		int ar[] = { 1,2,3 };
+		MyArray ar4{ ar };
 	__asm nop
 
 	}

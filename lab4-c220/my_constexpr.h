@@ -82,7 +82,7 @@ template <typename AdapterContainer>
 void printAdapterContainer(AdapterContainer c)
 {
 	std::cout << std::endl;
-	if constexpr (std::is_same_v<std::queue<typename AdapterContainer::value_type>, AdapterContainer>)
+	if constexpr (std::is_same_v<std::queue<typename AdapterContainer::value_type, typename AdapterContainer::container_type>, AdapterContainer>)
 	{
 		if constexpr (std::is_pointer_v<std::remove_reference_t<decltype(c.front())>>)
 		{
@@ -132,8 +132,10 @@ constexpr T Smth()
 		else
 		{
 			if constexpr (std::is_same_v<T, std::string>) return "abc";
+
 		}
 	}
+	return T{};
 }
 
 
@@ -144,7 +146,7 @@ class MyArray
 
 public:
 	MyArray() = default;
-	constexpr MyArray(const T* source_ar, const size_t source_size):ar(source_ar)
+	/*constexpr MyArray(const T* source_ar, const size_t source_size):ar(source_ar)
 	{
 		if (!(source_size < size))
 		{
@@ -156,14 +158,23 @@ public:
 			for (size_t i = 0; i < source_size; i++)
 				ar[i] = source_ar[i];
 		}
+	}*/
+	constexpr MyArray(const T* source_ar)
+	{
+		for (size_t i = 0; i < size; i++)
+			ar[i] = source_ar[i];
 	}
-	MyArray(const MyArray& other);
+	//MyArray(const MyArray& other);
+
 
 };
 
-template <typename const char*,size_t size>
-MyArray<const char*,size_t>::MyArray(const char* source_ar)->MyArray<char*,1+sizeof(source_ar)>
-{
 
-}
+//template <typename T, typename... U>
+//MyArray(T, U...)->MyArray<T, 1 + sizeof...(U)>;
 
+template <typename T, size_t size>
+MyArray(const T*) -> MyArray<T, size>;
+
+template <typename T, size_t size>
+MyArray(const T(&ar)[size]) -> MyArray<T, size>;
