@@ -143,9 +143,8 @@ template<typename T, size_t size>
 class MyArray
 {
 	T ar[size] = {}; //как обеспечить инициализацию элементов базового типа по умолчанию нулем?
-
 public:
-	MyArray() = default;
+	constexpr MyArray() = default;
 	/*constexpr MyArray(const T* source_ar, const size_t source_size):ar(source_ar)
 	{
 		if (!(source_size < size))
@@ -164,17 +163,14 @@ public:
 		for (size_t i = 0; i < size; i++)
 			ar[i] = source_ar[i];
 	}
-	//MyArray(const MyArray& other);
-
-
 };
 
 
 //template <typename T, typename... U>
 //MyArray(T, U...)->MyArray<T, 1 + sizeof...(U)>;
 
-template <typename T, size_t size>
-MyArray(const T*) -> MyArray<T, size>;
+//template <typename T, size_t size>
+//MyArray(const T*) -> MyArray<T, size>;
 
 template <typename T, size_t size>
 MyArray(const T(&ar)[size]) -> MyArray<T, size>;

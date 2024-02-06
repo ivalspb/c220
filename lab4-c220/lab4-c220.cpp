@@ -223,13 +223,13 @@
 			
 			//Требуется обеспечить работоспособность приведенных примеров использования.
 	{
-		MyArray<int, 5> ar1;//MyArray<int,5>
-		MyArray<char, 5> ar2{"ABCqwerty"};//MyArray<char,5>
+		constexpr MyArray<int, 5> ar1;//MyArray<int,5>
+		constexpr MyArray<char, 5> ar2{"ABCqwerty"};//MyArray<char,5>
 
-		MyArray ar3{"ABC"}; //MyArray<char,4>
+		constexpr MyArray ar3{"ABC"}; //MyArray<char,4>
 
-		int ar[] = { 1,2,3 };
-		MyArray ar4{ ar };
+		constexpr int ar[] = { 1,2,3 };
+		constexpr MyArray ar4{ ar };
 	__asm nop
 
 	}
