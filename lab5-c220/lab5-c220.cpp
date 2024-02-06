@@ -15,16 +15,17 @@ int main()
 
 		//1.а - обеспечьте корректное выполнение фрагмента
 		{
-			std::vector<std::unique_ptr<std::string*>> v;
-			v.push_back(std::make_unique<std::string*>(new std::string("aa")));
-			v.push_back(std::make_unique<std::string*>(new std::string("bb")));
-			v.push_back(std::make_unique<std::string*>(new std::string("cc")));
-						
+
+			std::vector<std::string*> v = { new std::string("aa"), new std::string("bb"), new std::string("cc") };
+
 			//Распечатайте все строки
 			for (const auto& i : v) 
-				std::cout << **i << " ";
-			__asm nop
+				std::cout << *i << " ";
 			//???
+			for (auto& i : v) 
+				delete i;
+			__asm nop
+			
 		} //???
 
 		//1.b - модифицируйте задание 1.а:
@@ -36,15 +37,32 @@ int main()
 		 //
 
 		{
-			//Распечатайте все строки
+			std::vector<std::unique_ptr<std::string*>> v;
+			v.push_back(std::make_unique<std::string*>(new std::string("aa")));
+			v.push_back(std::make_unique<std::string*>(new std::string("bb")));
+			v.push_back(std::make_unique<std::string*>(new std::string("cc")));
 
+			//Распечатайте все строки
+			std::cout << std::endl;
+			for (const auto& i : v)
+				std::cout << **i << " ";
 			__asm nop
 			//??? Уничтожение динамически созданных объектов?
 		} //???
 
 		{//1.c - дополните задание 1.b добавьте возможность изменять хранящиеся строки
 		 //следующим образом (например, добавить указанный суффикс: "AAA" -> "AAA_1")  
+			std::vector<std::unique_ptr<std::string*>> v;
+			v.push_back(std::make_unique<std::string*>(new std::string("aa")));
+			v.push_back(std::make_unique<std::string*>(new std::string("bb")));
+			v.push_back(std::make_unique<std::string*>(new std::string("cc")));
 
+			std::cout << std::endl;
+			for (auto& i : v) 
+			{
+				**i += "_1";
+				std::cout << **i << " ";
+			}
 
 
 			__asm nop
