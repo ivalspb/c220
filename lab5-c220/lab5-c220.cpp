@@ -72,7 +72,20 @@ int main()
 
 		 //Создайте unique_ptr, который является оберткой для динамического массива
 		 //с элементами std::string
+
+			size_t n = 10;
+			//auto dyn_ar_deleter = [](auto& x) {return delete[] x; };
+			//std::unique_ptr<std::string[], decltype(&dyn_ar_deleter)>dyn_ar_str(new std::string[n], dyn_ar_deleter);
+			auto p_dyn_ar_str = std::unique_ptr<std::string[]>(new std::string[n]);
+
 		 //С помощью unique_ptr::operator[] заполните обернутый массив значениями
+		 
+			std::cout << std::endl;
+			for (size_t i = 0; i < n; i++)
+			{
+				p_dyn_ar_str[i] = std::to_string(i);
+				std::cout << p_dyn_ar_str[i]<<" ";
+			}
 		 //Когда происходит освобождения памяти?
 
 			__asm nop
