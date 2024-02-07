@@ -74,16 +74,14 @@ int main()
 		 //с элементами std::string
 
 			size_t n = 10;
-			//auto dyn_ar_deleter = [](auto& x) {return delete[] x; };
-			//std::unique_ptr<std::string[], decltype(&dyn_ar_deleter)>dyn_ar_str(new std::string[n], dyn_ar_deleter);
-			auto p_dyn_ar_str = std::unique_ptr<std::string[]>(new std::string[n]);
+			auto p_dyn_ar_str = std::make_unique<std::string[]>(n);
 
 		 //С помощью unique_ptr::operator[] заполните обернутый массив значениями
 		 
 			std::cout << std::endl;
 			for (size_t i = 0; i < n; i++)
 			{
-				p_dyn_ar_str[i] = std::to_string(i);
+				p_dyn_ar_str[i] = "Test string "+std::to_string(i)+",";
 				std::cout << p_dyn_ar_str[i]<<" ";
 			}
 		 //Когда происходит освобождения памяти?
@@ -97,8 +95,10 @@ int main()
 		 //Реализуйте пользовательскую delete-функцию (функтор) для корректного 
 		 //освобождения памяти
 
-			std::string* arStrPtr[] = { new std::string("aa"), new std::string("bb"), new std::string("cc") };
-
+			std::string* arStrPtr[] = { new std::string("aad"), new std::string("bbd"), new std::string("ccd") };
+			size_t n = std::size(arStrPtr);
+			auto deleter_dyn_str = [n](auto& x) {for (size_t i = 0; i < n; i++) delete x[i]; };
+			std::unique_ptr<std::string*[], decltype(deleter_dyn_str)> p_arStrPtr (arStrPtr, deleter_dyn_str);
 			__asm nop
 		}
 
