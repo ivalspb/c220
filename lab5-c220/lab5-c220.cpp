@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <list>
 #include <set>
 #include <algorithm>
 #include <string>
@@ -102,10 +103,28 @@ int main()
 			__asm nop
 		}
 
-		{//1.f Создайте и заполните вектор, содержащий unique_ptr для указателей на std::string
+		{
+			//1.f Создайте и заполните вектор, содержащий unique_ptr для указателей на std::string
+
+			typedef  std::unique_ptr<std::string*> u_p_str_t;
+			std::vector<u_p_str_t>v_u_p_str;
+			v_u_p_str.push_back(std::make_unique<std::string*>(new std::string("v_u_p_str_aaa")));
+			v_u_p_str.push_back(std::make_unique<std::string*>(new std::string("v_u_p_str_bbb")));
+			v_u_p_str.push_back(std::make_unique<std::string*>(new std::string("v_u_p_str_ccc")));
+			
+			std::cout << "\n\nThe vector of unique_ptr to string*\n";
+			for (const auto& i : v_u_p_str)
+				std::cout << **i << " ";
+
 			//Посредством алгоритма copy() скопируйте элементы вектора в пустой список с элементами 
 			//того же типа
 			//Подсказка: перемещающие итераторы и шаблон std::make_move_iterator
+			std::list< u_p_str_t>l_u_p_str;
+			std::copy(std::make_move_iterator(v_u_p_str.begin()), std::make_move_iterator(v_u_p_str.end()), std::inserter(l_u_p_str, l_u_p_str.begin()));
+
+			std::cout << "\n\nThe list of unique_ptr to string*\n";
+			for (const auto& i : l_u_p_str)
+				std::cout << **i << " ";
 
 			__asm nop
 
