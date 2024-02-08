@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FileDeleter.cpp" />
     <ClCompile Include="lab5-c220.cpp" />
   </ItemGroup>
   <ItemGroup>

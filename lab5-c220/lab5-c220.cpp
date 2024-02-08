@@ -152,18 +152,22 @@ int main()
 	//"писатели":
 	//Создать writer1, writer2
 
-	std::string fn("tmpfile.txt");
-	typedef std::shared_ptr<std::ofstream> writer_t;
-	size_t number_of_writers = rand() % 10;
-	auto writers = std::unique_ptr<writer_t[], UniqCountDeleter<writer_t>>(new writer_t[number_of_writers], UniqCountDeleter<writer_t>(number_of_writers));
-	//(new std::ofstream(fn), FileDeleter(fn));
-	
+		std::string fn("tmpfile.txt");
+		typedef std::shared_ptr<std::ofstream> writer_t;
+		std::vector<writer_t> writers(rand() % 30, writer_t(new std::ofstream(fn), FileDeleter(fn)));
+		for (size_t session_number = 0; session_number < writers.size(); session_number++)
+		{
+			size_t session_writer = rand() % writers.size();
+			(*writers[session_writer]) << "\nWriter #" << session_writer << ":\n";
+			for (size_t session_strings = 0; session_strings < rand() % 10; session_strings++)
+			{
+				//заданное число итераций случайным образом позволяем одному из "писателей" записать в файл
+				//свою строчку
+				(*writers[session_writer]) << rand() % 100 << " ";
+			}
+		}
 
-	//заданное число итераций случайным образом позволяем одному из "писателей" записать в файл
-	//свою строчку
-
-
-	__asm nop
+		__asm nop
 	}//закрытие файла???
 
 	
