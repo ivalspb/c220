@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileDeleter.cpp" />
     <ClCompile Include="lab5-c220.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="deleters.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

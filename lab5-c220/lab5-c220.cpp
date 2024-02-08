@@ -5,6 +5,7 @@
 #include <set>
 #include <algorithm>
 #include <string>
+#include "deleters.h"
 
 
 int main()
@@ -145,14 +146,18 @@ int main()
 	//в. Последний владелец указателя должен закрыть файл
 
 	//Подсказка: имитировать порядок записи можно с помощью функции rand()
-	/*
+	
 	{
 
 	//"писатели":
 	//Создать writer1, writer2
 
-
-
+	std::string fn("tmpfile.txt");
+	typedef std::shared_ptr<std::ofstream> writer_t;
+	size_t number_of_writers = rand() % 10;
+	auto writers = std::unique_ptr<writer_t[], UniqCountDeleter<writer_t>>(new writer_t[number_of_writers], UniqCountDeleter<writer_t>(number_of_writers));
+	//(new std::ofstream(fn), FileDeleter(fn));
+	
 
 	//заданное число итераций случайным образом позволяем одному из "писателей" записать в файл
 	//свою строчку
@@ -161,7 +166,7 @@ int main()
 	__asm nop
 	}//закрытие файла???
 
-	*/
+	
 	/***************************************************************/
 	//Задание 3.
 	{
