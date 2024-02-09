@@ -39,31 +39,31 @@ int main()
 		 //
 
 		{
-			std::vector<std::unique_ptr<std::string*>> v;
-			v.push_back(std::make_unique<std::string*>(new std::string("aa")));
-			v.push_back(std::make_unique<std::string*>(new std::string("bb")));
-			v.push_back(std::make_unique<std::string*>(new std::string("cc")));
+			std::vector<std::unique_ptr<std::string>> v;
+			v.push_back(std::make_unique<std::string>("aa"));
+			v.push_back(std::make_unique<std::string>("bb"));
+			v.push_back(std::make_unique<std::string>("cc"));
 
 			//Распечатайте все строки
 			std::cout << std::endl;
 			for (const auto& i : v)
-				std::cout << **i << " ";
+				std::cout << *i << " ";
 			__asm nop
 			//??? Уничтожение динамически созданных объектов?
 		} //???
 
 		{//1.c - дополните задание 1.b добавьте возможность изменять хранящиеся строки
 		 //следующим образом (например, добавить указанный суффикс: "AAA" -> "AAA_1")  
-			std::vector<std::unique_ptr<std::string*>> v;
-			v.push_back(std::make_unique<std::string*>(new std::string("aa")));
-			v.push_back(std::make_unique<std::string*>(new std::string("bb")));
-			v.push_back(std::make_unique<std::string*>(new std::string("cc")));
+			std::vector<std::unique_ptr<std::string>> v;
+			v.push_back(std::make_unique<std::string>("aa"));
+			v.push_back(std::make_unique<std::string>("bb"));
+			v.push_back(std::make_unique<std::string>("cc"));
 
 			std::cout << std::endl;
 			for (auto& i : v) 
 			{
-				**i += "_1";
-				std::cout << **i << " ";
+				*i += "_1";
+				std::cout << *i << " ";
 			}
 
 
@@ -106,16 +106,16 @@ int main()
 
 		{
 			//1.f Создайте и заполните вектор, содержащий unique_ptr для указателей на std::string
-
-			typedef  std::unique_ptr<std::string*> u_p_str_t;
+//*
+			typedef  std::unique_ptr<std::string> u_p_str_t;
 			std::vector<u_p_str_t>v_u_p_str;
-			v_u_p_str.push_back(std::make_unique<std::string*>(new std::string("v_u_p_str_aaa")));
-			v_u_p_str.push_back(std::make_unique<std::string*>(new std::string("v_u_p_str_bbb")));
-			v_u_p_str.push_back(std::make_unique<std::string*>(new std::string("v_u_p_str_ccc")));
+			v_u_p_str.push_back(std::make_unique<std::string>("v_u_p_str_aaa"));
+			v_u_p_str.push_back(std::make_unique<std::string>("v_u_p_str_bbb"));
+			v_u_p_str.push_back(std::make_unique<std::string>("v_u_p_str_ccc"));
 			
 			std::cout << "\n\nThe vector of unique_ptr to string*\n";
 			for (const auto& i : v_u_p_str)
-				std::cout << **i << " ";
+				std::cout << *i << " ";
 
 			//Посредством алгоритма copy() скопируйте элементы вектора в пустой список с элементами 
 			//того же типа
@@ -125,9 +125,9 @@ int main()
 
 			std::cout << "\n\nThe list of unique_ptr to string*\n";
 			for (const auto& i : l_u_p_str)
-				std::cout << **i << " ";
+				std::cout << *i << " ";
 
-			__asm nop
+	////*/		__asm nop
 
 		}
 		__asm nop
@@ -181,7 +181,18 @@ int main()
 		//элементов в массиве!
 
 		//В std::set "складываем" по алфавиту обертки для строк, которые содержат только буквы 
-
+		std::set<std::shared_ptr<std::string>>  s_p_str;
+		for (const auto& word : strings)
+		{
+			bool only_letters = true;
+			for (const auto& c : word)
+				if (c < 'a' || c>'z') 
+				{
+					only_letters = false;
+					break;
+				}
+			if(only_letters) 
+		}
 
 		__asm nop
 		/******************************************************************************************/
