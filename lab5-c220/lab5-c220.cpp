@@ -155,6 +155,7 @@ int main()
 		std::string fn("tmpfile.txt");
 		typedef std::shared_ptr<std::ofstream> writer_t;
 		std::vector<writer_t> writers(rand() % 30, writer_t(new std::ofstream(fn), FileDeleter(fn)));
+		//инициализировать было не обязательно, так как делетер не входит в тип и может быть произвольным 
 		for (size_t session_number = 0; session_number < writers.size(); session_number++)
 		{
 			size_t session_writer = rand() % writers.size();
@@ -170,7 +171,8 @@ int main()
 		__asm nop
 	}//закрытие файла???
 
-	
+	__asm nop
+
 	/***************************************************************/
 	//Задание 3.
 	{
@@ -191,25 +193,46 @@ int main()
 					only_letters = false;
 					break;
 				}
-			if(only_letters) 
+			if (only_letters) s_p_str.insert(std::make_shared<std::string>(word));
 		}
+		std::cout << "\nThe set:\n";
+		for (const auto& i : s_p_str) std::cout << *i << " ";
 
-		__asm nop
 		/******************************************************************************************/
 
 		//В std::vector "складываем" обертки для строк, которые содержат только цифры 
 		//Выводим на экран
 		//Находим сумму
 
-		//std::vector<std::shared_ptr < std::string>>
+		std::vector<std::shared_ptr < std::string>> v_p_str;
+		for (const auto& word : strings)
+		{
+			bool only_digits = true;
+			for(const auto& c:word)
+				if (c < '0' || c>'9')
+				{
+					only_digits = false;
+					break;
+				}
+			if (only_digits) v_p_str.push_back(std::make_shared<std::string>(word));
+		}
+		std::cout << "\nThe vector:\n";
+		int sum_v = 0;
+		for (const auto& i : v_p_str) 
+		{
+			std::cout << *i << " ";
+			sum_v += std::stoi(*i);
+		}
 
 		/******************************************************************************************/
 		//сюда "складываем" обертки для строк, которые не содержат ни символов букв, ни символов цифр
 		//и просто выводим
+		__asm nop
 
 
 	}
 
+	__asm nop
 
 	/******************************************************************************************/
 	//Задание 4. 
