@@ -216,7 +216,7 @@ int main()
 				}
 			if (only_digits) v_p_str.push_back(std::make_shared<std::string>(word));
 		}
-		std::cout << "\nThe vector:\n";
+		std::cout << "\nThe vector contains only digits:\n";
 		int sum_v = 0;
 		for (const auto& i : v_p_str) 
 		{
@@ -227,6 +227,22 @@ int main()
 		/******************************************************************************************/
 		//сюда "складываем" обертки для строк, которые не содержат ни символов букв, ни символов цифр
 		//и просто выводим
+		std::vector<std::shared_ptr < std::string>> v_p_str2;
+		for (const auto& word : strings)
+		{
+			bool not_digits_not_letters = true;
+			for(const auto& c:word)
+				if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+				{
+					not_digits_not_letters = false;
+					break;
+				}
+			if (not_digits_not_letters) v_p_str2.push_back(std::make_shared<std::string>(word));
+		}
+		std::cout << "\nThe vector contains not digits, nor letters:\n";
+		for (const auto& i : v_p_str2)
+			std::cout << *i << " ";
+
 		__asm nop
 
 
