@@ -260,7 +260,16 @@ int main()
 
 
 		//а) Требуется добавить в вектор обертки для элементов массива, НЕ копируя элементы массива! 
+		
+		for (const auto& i : ar)
+			v.push_back(std::make_shared<std::string>(i));
+		 
 		//б) Отсортировать вектор по алфавиту и вывести на экран
+		
+		std::sort(v.begin(), v.end(), [](auto& a, auto& b) {return *a < *b; });
+		std::cout << "\n4. Sorted vector:\n";
+		for (const auto& i : v) std::cout << *i << " ";
+
 		//в) Обеспечить корректное освобождение памяти
 
 
