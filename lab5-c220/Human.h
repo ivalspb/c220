@@ -1,0 +1,17 @@
+#pragma once
+#include <string>
+#include <memory>
+#include <vector>
+
+class Human
+{
+	std::string m_name;
+	bool alive;
+	std::shared_ptr<Human> m_mother;
+	std::shared_ptr<Human> m_father;
+	std::vector<std::weak_ptr<Human>> m_childs;
+public:
+	Human() = default;
+	Human(std::string& name, bool alive, std::shared_ptr<Human> mother, std::shared_ptr<Human> father, std::vector<std::weak_ptr<Human>>& childs);
+};
+
