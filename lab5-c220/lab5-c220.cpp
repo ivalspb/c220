@@ -263,7 +263,7 @@ int main()
 		//а) Требуется добавить в вектор обертки для элементов массива, НЕ копируя элементы массива! 
 		
 		for (const auto& i : ar)
-			v.push_back(std::make_shared<std::string>(i)); //std::shared_ptr<std::string>(&i);
+			v.push_back(std::make_shared<std::string>(&i)); //std::shared_ptr<std::string>(&i);
 		 
 		//б) Отсортировать вектор по алфавиту и вывести на экран
 		
