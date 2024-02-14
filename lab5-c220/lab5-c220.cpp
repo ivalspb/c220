@@ -298,7 +298,9 @@ int main()
 		//(то есть на самом деле два деда и две бабы):
 
 
-		//std::shared_ptr<human> grandM1(new human("Eva"));
+		std::shared_ptr<Human> grandM1(new Human("Eva"));
+		std::shared_ptr<Human> grandF1(new Human("Adam"));
+		std::shared_ptr<Human> grandF1(new Human::child(grandM1,grandF1,"Abel"));
 		//...
 
 		//у них появились дети - child():
