@@ -6,7 +6,7 @@
 class Human
 {
 	std::string m_name;
-	bool alive;
+	bool alive=true;
 	std::shared_ptr<Human> m_mother;
 	std::shared_ptr<Human> m_father;
 	std::vector<std::weak_ptr<Human>> m_childs;
@@ -20,5 +20,6 @@ public:
 	Human(Human&& other) = delete;
 	Human& operator=(Human&& other) = delete;
 	static void child(std::shared_ptr<Human> mother, std::shared_ptr<Human> father = nullptr, std::string& name);
+	void make_dead() { alive = false; }
 };
 
