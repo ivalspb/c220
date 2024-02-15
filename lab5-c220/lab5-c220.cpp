@@ -300,15 +300,20 @@ int main()
 
 		std::shared_ptr<Human> grandM1(new Human("Eva"));
 		std::shared_ptr<Human> grandF1(new Human("Adam"));
-		std::shared_ptr<Human> grandF1(new Human::child(grandM1,grandF1,"Abel"));
+		
 		//...
 
 		//у них появились дети - child():
-
-
+		std::shared_ptr<Human> gen1h1(Human::child(grandM1, grandF1, "Abel"));
+		std::shared_ptr<Human> gen1h2(Human::child(grandM1, grandF1, "Kain"));
+		std::shared_ptr<Human> gen1h3(Human::child(grandM1, grandF1, "Gera"));
+		std::shared_ptr<Human> gen1h4(Human::child(grandM1, grandF1, "Liza"));
 		//а у детей в свою очередь свои дети:
+		std::shared_ptr<Human> gen2h5(Human::child(gen1h3, gen1h1, "Slava"));
+		std::shared_ptr<Human> gen2h6(Human::child(gen1h3, gen1h1, "Olga"));
 
-
+		std::shared_ptr<Human> gen2h7(Human::child(gen1h4, gen1h2, "Kolya"));
+		std::shared_ptr<Human> gen2h8(Human::child(gen1h4, gen1h2, "Masha"));
 		//...
 		__asm nop
 	}
