@@ -313,10 +313,12 @@ int main()
 		std::shared_ptr<Human> gen2h6(Human::child(gen1h3, gen1h1, "Olga"));
 
 		std::shared_ptr<Human> gen2h7(Human::child(gen1h4, gen1h2, "Kolya"));
-		std::shared_ptr<Human> gen2h8(Human::child(gen1h4, gen1h2, "Masha"));
+		std::shared_ptr<Human> gen2h8(Human::child(gen1h4, gen1h2, "Nikita"));
+		std::shared_ptr<Human> gen2h9(Human::child(gen1h4, gen1h2, "Artem"));
 		//...
 		
 		grandF1.get()->printGenTree();
+		gen2h5.get()->printGenTree();
 		__asm nop
 		
 	}

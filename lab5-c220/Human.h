@@ -11,6 +11,10 @@ class Human
 	std::shared_ptr<Human> m_mother;
 	std::shared_ptr<Human> m_father;
 	std::vector<std::weak_ptr<Human>> m_childs;
+
+	void printParents();
+	void printChilds();
+
 public:
 	Human() = default;
 	Human(const std::string& name, bool alive, std::shared_ptr<Human> mother, std::shared_ptr<Human> father, std::vector<std::weak_ptr<Human>>& childs) :
