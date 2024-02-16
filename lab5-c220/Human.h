@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <iostream>
 
 class Human
 {
@@ -22,5 +23,6 @@ public:
 	Human& operator=(Human&& other) = delete;
 	static std::shared_ptr<Human> child(std::shared_ptr<Human> mother, std::shared_ptr<Human> father = nullptr, const std::string& name="noname");
 	void make_dead() { alive = false; }
+	void printGenTree();
 };
 

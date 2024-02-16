@@ -8,3 +8,10 @@ std::shared_ptr<Human> Human::child(std::shared_ptr<Human> mother, std::shared_p
 	if (father) father->m_childs.push_back(newborn);
 	return newborn;
 }
+
+void Human::printGenTree()
+{
+	std::cout << m_name << " ";
+	if (!m_childs.empty())
+		for (const auto& i : m_childs) i.lock().get()->printGenTree();
+}

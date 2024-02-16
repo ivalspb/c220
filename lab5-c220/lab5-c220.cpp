@@ -315,7 +315,10 @@ int main()
 		std::shared_ptr<Human> gen2h7(Human::child(gen1h4, gen1h2, "Kolya"));
 		std::shared_ptr<Human> gen2h8(Human::child(gen1h4, gen1h2, "Masha"));
 		//...
+		
+		grandF1.get()->printGenTree();
 		__asm nop
+		
 	}
 
 
