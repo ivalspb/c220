@@ -1,25 +1,30 @@
 #include "Human.h"
 
-void Human::printParents()
+void Human::printParents(size_t space)
 {
+	size_t count = m_name.size();
+	space += count;
 	if(m_father)
 	{
-		std::cout << (*m_father).m_name << "\t";
-		(*m_father).printParents();
+		(*m_father).printParents(space);
 	}
+	for (size_t i = count; i < space; ++i) std::cout << " ";
+	std::cout << m_name << std::endl;
 	if(m_mother)
 	{
-		std::cout << (*m_mother).m_name << "\n";
-		(*m_mother).printParents();
+		(*m_mother).printParents(space);
 	}
 }
 
-void Human::printChilds()
+void Human::printChilds(size_t space)
 {
-	std::cout << m_name << " ";
+	size_t count = m_name.size();
+	space += count;
+	for (size_t i = count; i < space; ++i) std::cout << " ";
+	std::cout << m_name << std::endl;
 	if (!m_childs.empty())
-		for (const auto& i : m_childs) i.lock().get()->printChilds();
-	std::cout << "\n";
+		for (const auto& i : m_childs) i.lock().get()->printChilds(space);
+	//std::cout << "\n";
 }
 
 std::shared_ptr<Human> Human::child(std::shared_ptr<Human> mother, std::shared_ptr<Human> father, const std::string& name)

@@ -12,8 +12,8 @@ class Human
 	std::shared_ptr<Human> m_father;
 	std::vector<std::weak_ptr<Human>> m_childs;
 
-	void printParents();
-	void printChilds();
+	void printParents(size_t space=0);
+	void printChilds(size_t space = 0);
 
 public:
 	Human() = default;
