@@ -194,7 +194,7 @@ int main()
 					only_letters = false;
 					break;
 				}
-			if (only_letters) s_p_str.insert(std::make_shared<std::string>(word));
+			if (only_letters) s_p_str.insert(std::shared_ptr<std::string>(const_cast<std::string*>(&word), [](auto& x) {}));
 		}
 		std::cout << "\nThe set:\n";
 		for (const auto& i : s_p_str) std::cout << *i << " ";
@@ -215,7 +215,7 @@ int main()
 					only_digits = false;
 					break;
 				}
-			if (only_digits) v_p_str.push_back(std::make_shared<std::string>(word));
+			if (only_digits) v_p_str.push_back(std::shared_ptr<std::string>(const_cast<std::string*>(&word), [](auto& x) {}));
 		}
 		std::cout << "\nThe vector contains only digits:\n";
 		int sum_v = 0;
@@ -238,7 +238,7 @@ int main()
 					not_digits_not_letters = false;
 					break;
 				}
-			if (not_digits_not_letters) v_p_str2.push_back(std::make_shared<std::string>(word));
+			if (not_digits_not_letters) v_p_str2.push_back(std::shared_ptr<std::string>(const_cast<std::string*>(&word), [](auto& x) {}));
 		}
 		std::cout << "\nThe vector contains not digits, nor letters:\n";
 		for (const auto& i : v_p_str2)

@@ -41,7 +41,10 @@ void Human::printGenTree()
 	std::cout << "\nGenialogy tree of "<<m_name;
 	std::cout << "\nChilds:\n";
 	if (!m_childs.empty())
-		for (const auto& i : m_childs) i.lock().get()->printChilds();
+		this->printChilds();
+		//for (const auto& i : m_childs) i.lock().get()->printChilds();
+	else
+		std::cout << "Not childs yet";
 	std::cout << "\nParents:\n";
 	this->printParents();
 	
