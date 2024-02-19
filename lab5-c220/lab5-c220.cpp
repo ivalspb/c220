@@ -185,7 +185,7 @@ int main()
 
 		//В std::set "складываем" по алфавиту обертки для строк, которые содержат только буквы 
 		std::set<std::shared_ptr<std::string>>  s_p_str;
-		for (const auto& word : strings)
+		for (auto& word : strings)
 		{
 			bool only_letters = true;
 			for (const auto& c : word)
@@ -194,7 +194,7 @@ int main()
 					only_letters = false;
 					break;
 				}
-			if (only_letters) s_p_str.insert(std::shared_ptr<std::string>(const_cast<std::string*>(&word), [](auto& x) {}));
+			if (only_letters) s_p_str.insert(std::shared_ptr<std::string>(&word, [](auto& x) {}));
 		}
 		std::cout << "\nThe set:\n";
 		for (const auto& i : s_p_str) std::cout << *i << " ";
@@ -206,7 +206,7 @@ int main()
 		//Находим сумму
 
 		std::vector<std::shared_ptr < std::string>> v_p_str;
-		for (const auto& word : strings)
+		for (auto& word : strings)
 		{
 			bool only_digits = true;
 			for(const auto& c:word)
@@ -215,7 +215,7 @@ int main()
 					only_digits = false;
 					break;
 				}
-			if (only_digits) v_p_str.push_back(std::shared_ptr<std::string>(const_cast<std::string*>(&word), [](auto& x) {}));
+			if (only_digits) v_p_str.push_back(std::shared_ptr<std::string>(&word, [](auto& x) {}));
 		}
 		std::cout << "\nThe vector contains only digits:\n";
 		int sum_v = 0;
@@ -229,7 +229,7 @@ int main()
 		//сюда "складываем" обертки для строк, которые не содержат ни символов букв, ни символов цифр
 		//и просто выводим
 		std::vector<std::shared_ptr < std::string>> v_p_str2;
-		for (const auto& word : strings)
+		for (auto& word : strings)
 		{
 			bool not_digits_not_letters = true;
 			for(const auto& c:word)
@@ -238,7 +238,7 @@ int main()
 					not_digits_not_letters = false;
 					break;
 				}
-			if (not_digits_not_letters) v_p_str2.push_back(std::shared_ptr<std::string>(const_cast<std::string*>(&word), [](auto& x) {}));
+			if (not_digits_not_letters) v_p_str2.push_back(std::shared_ptr<std::string>(&word, [](auto& x) {}));
 		}
 		std::cout << "\nThe vector contains not digits, nor letters:\n";
 		for (const auto& i : v_p_str2)
@@ -262,8 +262,8 @@ int main()
 
 		//а) Требуется добавить в вектор обертки для элементов массива, НЕ копируя элементы массива! 
 		
-		for (const auto& i : ar)
-			v.push_back(std::shared_ptr<std::string>(const_cast<std::string*>(&i), [](auto& x) {})); //std::shared_ptr<std::string>(&i);
+		for (auto& i : ar)
+			v.push_back(std::shared_ptr<std::string>(&i, [](auto& x) {})); //std::shared_ptr<std::string>(&i);
 		 
 		//б) Отсортировать вектор по алфавиту и вывести на экран
 		

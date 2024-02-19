@@ -44,7 +44,7 @@ void Human::printGenTree()
 		this->printChilds();
 		//for (const auto& i : m_childs) i.lock().get()->printChilds();
 	else
-		std::cout << "Not childs yet";
+		std::cout << "No childs yet";
 	std::cout << "\nParents:\n";
 	this->printParents();
 	
